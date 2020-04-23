@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Citizen Retail Connect</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">Mobile Number</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" required></ion-input>
+    </ion-item>
+    <br><br>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
+        <br>
+        <a class="right" [routerLink]="['/forgot-password']">Forgot Password?</a>
+      </ion-col>
+    </ion-row>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    
+    <div margin-vertical class="center">
+      <ion-button size="default" color="primary" routerLink="/new-user" class="ion-text-center">
+        <ion-label>New User Register Here!</ion-label>
+      </ion-button>
+    </div>
+
+  </form>
+</ion-content>

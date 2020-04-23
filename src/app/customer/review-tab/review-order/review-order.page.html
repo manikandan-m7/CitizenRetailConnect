@@ -1,0 +1,84 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <ion-card-title class="ion-text-center">Review your Order</ion-card-title>
+        <ion-card color="light">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="5">Item</ion-col>
+                <ion-col size="2.5">Qty</ion-col>
+                <ion-col size="4.5">Price(Rs)</ion-col>
+              </ion-row>
+              <ion-row *ngFor="let item of cartItems">
+                <ion-col size="5">{{ item.name }}</ion-col>
+                <ion-input size="1" class="top-pad" [(ngModel)]="item.quantity" type="disabled"></ion-input>
+                <ion-col size="2.5">{{ item.unit }}</ion-col>
+                <ion-col size="3.5">{{ item.price * item.quantity }}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="5">
+                  <ion-card-subtitle>Total Amount: (Approximate)</ion-card-subtitle>
+                </ion-col>
+                <ion-col size="3">
+                  <ion-card-subtitle></ion-card-subtitle>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-card-subtitle>{{ totalAmount }}.00/-</ion-card-subtitle>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item>
+    <ion-label>Comments:-</ion-label>
+    <ion-textarea clearOnEdit="true"></ion-textarea>
+  </ion-item>
+
+  <ion-list>
+    <ion-radio-group value="deliveryMode">
+      <ion-list-header>
+        <ion-label>Delivery Option</ion-label>
+      </ion-list-header>
+  
+      <ion-item>
+        <ion-label>Home Delivery</ion-label>
+        <ion-radio slot="start" value="homedelivery"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Store Pickup</ion-label>
+        <ion-radio slot="start" value="storepickup"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+
+  <ion-list>
+  <ion-item>
+    <ion-label>Preferred Time Slot</ion-label>
+    <ion-select value="preferredDeliveryTime" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="10-12">10 AM to 12 PM</ion-select-option>
+      <ion-select-option value="12-2">12 PM to 2 PM</ion-select-option>
+      <ion-select-option value="2-5">2 PM to 5 PM</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+</ion-list>
+
+  <div margin-vertical class="center">
+    
+    <ion-button id="btn-back" color="danger" (click)="goBack()">
+      Edit your cart
+    </ion-button>
+
+    <ion-button id="btn-confirm" color="secondary" routerLink="/order-placed">
+      Place Order
+    </ion-button>
+  </div>
+</ion-content>

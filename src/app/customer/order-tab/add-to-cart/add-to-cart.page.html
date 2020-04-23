@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-list *ngFor="let category of inventory.category">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="8" offset-sm="2">
+          <ion-card color="light">
+            <ion-card-header>{{ category.name }}
+            </ion-card-header>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="3">Item</ion-col>
+                  <ion-col size="2.5">Qty</ion-col>
+                  <ion-col size="3">Price(Rs)</ion-col>
+                </ion-row>
+                <ion-row *ngFor="let item of category.items">
+                  <ion-col size="3">{{ item.name }}</ion-col>
+                  <ion-input size="2" class="top-pad" [(ngModel)]="item.quantity" type="number"></ion-input>
+                  <ion-col size="3">{{ item.price }}/ {{ item.unit }}</ion-col>
+                    <ion-button size="small" color="success" fill="clear" (click)="addToCart(item)">
+                      <ion-icon name="add"></ion-icon>
+                    </ion-button>
+                    <ion-button size="small" color="danger" fill="clear" (click)="removeFromCart(item)">
+                      <ion-icon name="remove"></ion-icon>
+                    </ion-button>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </ion-list>
+    <div margin-vertical class="center">
+      <ion-button id="btn-confirm" color="secondary" (click)="prepareOrder()">
+        Add To Cart
+      </ion-button>
+    </div>
+    </ion-content>

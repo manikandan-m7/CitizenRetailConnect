@@ -1,0 +1,158 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-label>
+          Order Details
+      </ion-label>
+      <ion-label class="ion-float-right">
+          <ion-icon name="home-outline"></ion-icon>
+      </ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="shade">
+  <ion-grid>
+    <ion-row>
+        <ion-col class="content-bold">
+          You can accept or modify (lesser quantity/price change) and accept or deny each item
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="content-bold">
+          {{ customerOrder.customerName }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="content-bold">
+          {{ customerOrder.orderNumber }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="ion-text-end">
+            Store Pickup {{ customerOrder.storePickup }}<i class="fa fa-asterisk"></i>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let grocery of customerOrder.groceries">
+        <ion-col class="ordergrid-border">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label>
+                    {{ grocery.itemName }}
+                  </ion-label>
+              </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label>
+                    {{ grocery.itemQuantity }} kg
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  Rs.<ion-input type="text" [value]="grocery.itemPrice"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                Comments:
+              </ion-col>
+              <ion-col>
+                <ion-textarea class="column-border" color="medium" rows="2"></ion-textarea>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button color="success">Accept</ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button color="warning">Reject</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let bakeryItem of customerOrder.bakeryItems"> 
+        <ion-col class="ordergrid-border">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                {{ bakeryItem.itemName }}
+              </ion-col>
+              <ion-col>
+                {{ bakeryItem.itemQuantity }}
+              </ion-col>
+              <ion-col>
+                {{ bakeryItem.itemPrice }}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                Comments:
+              </ion-col>
+              <ion-col>
+                <ion-textarea class="column-border" color="medium" rows="2"></ion-textarea>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button color="success">Accept</ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button color="warning">Reject</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let dairyItem of customerOrder.dairyItems">
+        <ion-col class="ordergrid-border">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                {{ dairyItem.itemName }}
+              </ion-col>
+              <ion-col>
+                {{ dairyItem.itemQuantity }}
+              </ion-col>
+              <ion-col>
+                {{ dairyItem.itemPrice }}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                Comments:
+              </ion-col>
+              <ion-col>
+                <ion-textarea class="column-border" color="medium" rows="2"></ion-textarea>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button color="success">Accept</ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button color="warning">Reject</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="primary" (click)="confirmOrder(customerOrder.orderNumber)">Confirm Order</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="danger" (click)="denyOrder(customerOrder.orderNumber)">Deny Order</ion-button>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

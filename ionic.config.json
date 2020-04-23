@@ -1,0 +1,7 @@
+{
+  "name": "CitizenRetailConnect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

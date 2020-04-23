@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-label>
+          Customer Orders
+      </ion-label>
+      <ion-label class="ion-float-right">
+          <ion-icon name="home-outline"></ion-icon>
+      </ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-float-left ion-margin" size="sm-2">Orders</ion-col>
+        <ion-col class="ion-float-right">
+          <ion-searchbar color="light" animated (ionInput)="searchByOrderNo($event)"></ion-searchbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let order of searchedOrders">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            {{ order.customerName }}
+          </ion-col>
+          <ion-col size-md="6">
+            Store Pickup {{ order.storePickup }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+              Order Status: {{ order.status }}
+            </ion-col>
+            <ion-col size-md="6">
+              <a href="javascript: void()" name="OrderDetails" (click)="displayOrderDetails(order.orderNumber)">
+                <ion-label color="primary">Go to the order</ion-label>
+              </a>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col offset="5">
+                Order No: {{ order.orderNumber }}
+              </ion-col>
+            </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

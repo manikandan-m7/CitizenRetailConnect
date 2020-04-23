@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="secondary">
+      <ion-button routerLink="/customer-activity">
+        <ion-icon slot="icon-only" name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ customer.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-card>
+          <br>
+          <ion-card-title class="ion-text-center">Order Details - #{{ orderDetails.id}}</ion-card-title>
+          <ion-card-content>
+            <ion-item lines="none" class="ion-text-center">
+              <ion-label>{{ orderDetails.shopName }}</ion-label>
+            </ion-item>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-label>
+                    <h2>{{ orderDetails.deliveryMode }}</h2>
+                  </ion-label>
+                </ion-col>
+                <ion-col class="ion-text-right">
+                  <ion-label>{{ orderDetails.deliveryTime }}</ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row></ion-row>
+            </ion-grid>
+            <ion-list *ngFor="let item of orderDetails.items">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-item-divider>
+                      <ion-label>{{ item.name }}</ion-label>
+                    </ion-item-divider>
+                  </ion-col>
+                  <ion-col class="ion-text-center">
+                    <ion-item-divider>
+                      <ion-label>{{ item.quantity }} {{ item.unit }}</ion-label>
+                    </ion-item-divider>
+                  </ion-col>
+                  <ion-col class="ion-text-right">
+                    <ion-item-divider>
+                      <ion-label>{{ item.price }}</ion-label>
+                    </ion-item-divider>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-list>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-card-subtitle>
+                    <h2>Total Amount</h2>
+                  </ion-card-subtitle>
+                </ion-col>
+                <ion-col class="ion-text-right">
+                  <ion-card-subtitle>
+                    <h2>{{ orderDetails.totalAmount }} </h2>
+                  </ion-card-subtitle>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-item lines="none" class="ion-text-center">
+              <ion-label><a href="tel:{{ orderDetails.shopContactNo }}" class="button button-positive">Contact
+                  - {{ orderDetails.shopName}}</a></ion-label>
+            </ion-item>
+            <br>
+            <div margin-vertical text-right>
+              <ion-button id="btn-confirm" color="secondary">
+                Mark Order as Completed
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

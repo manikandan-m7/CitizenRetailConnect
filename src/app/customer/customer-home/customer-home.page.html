@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="secondary">
+      <ion-button routerLink="/customer-activity">
+        <ion-icon slot="icon-only" name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ customer.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let shop of nearByShops">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="8" offset-sm="2">
+          <ion-card color="light" (click)="placeOrder(shop.name)">
+            <ion-card-header>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-card-title>{{ shop.name }}</ion-card-title>
+                  </ion-col>
+                  <ion-col>
+                    <ion-card-title class="ion-text-center"
+                      >{{ shop.distance }}</ion-card-title
+                    >
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-header>
+            <ion-card-content>
+              <p>{{ shop.deliveryMode }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,238 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-label>Retailer Registration-Shop Details</ion-label>
+      <ion-label class="ion-float-right">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="shopDetailsForm" (ngSubmit)="submitRegistration()">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-md="2">
+            <ion-item>
+              <ion-label position="floating">Shop Name</ion-label>
+              <ion-input type="text" autocomplete formControlName="shopName"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="2">
+            <ion-item>
+              <ion-label position="floating">Email ID</ion-label>
+              <ion-input type="email" formControlName="emailAddress"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="2">
+            <ion-item>
+              <ion-card>
+                <ion-card-title>Select Location in the Map</ion-card-title>
+                <ion-card-content>
+                  Map Place Holder here
+                </ion-card-content>
+              </ion-card>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label position="floating">Opening Time*</ion-label>
+            <!--<ion-input type="text" formControlName="openingTime"></ion-input>-->
+            <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T03:30Z" formControlName="openingTime"></ion-datetime>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label position="floating">Closing Time*</ion-label>
+            <!--<ion-input type="text" ></ion-input>-->
+            <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T15:30Z" formControlName="closingTime"></ion-datetime>
+          </ion-col>
+        </ion-row> 
+        <ion-row>
+          <ion-col size-sm="2">
+            <ion-label >Payment Options**</ion-label>
+            <ion-select formControlName="paymentOptions" interface="popover" placeholder="Select One">
+              <ion-select-option value="Paytm">Paytm</ion-select-option>
+              <ion-select-option value="Paypal">Paypal</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="2">
+            <ion-item>
+              <ion-label position="floating">UPI ID***</ion-label>
+              <ion-input type="text" formControlName="upiId"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="2">
+            <ion-label position="floating">Delivery Options****</ion-label>
+            <ion-select formControlName="deliveryOptions" multiple="true" interface="popover" placeholder="Select One">
+              <ion-select-option value="homeDelivery">Home Delivery</ion-select-option>
+              <ion-select-option value="storePickup">Store Pickup</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label ion-center-text>
+                <strong>Inventory List</strong>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label color="primary">
+                  <ion-icon name="chevron-forward-outline" (click)="displayGroceries()"></ion-icon>
+                  Groceries
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showGroceries">
+          <ion-col>
+            <ion-grid>
+              <ion-row>
+                <ion-col>Select</ion-col>
+                <ion-col>Items</ion-col>
+                <ion-col>Price</ion-col>
+                <ion-col></ion-col>
+              </ion-row>
+              <div formArrayName="groceryItems">
+                <ion-row *ngFor="let grocery of groceryItems.controls; let i = index" [formGroupName]="i">
+                  <ion-col>
+                    <ion-item>
+                      <ion-checkbox formControlName="grocerySelected"></ion-checkbox>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input type="text" formControlName="groceryName" disabled="disabled"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                    <ion-input type="text" formControlName="groceryPrice"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label>Per KG</ion-label>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label color="primary">
+                  <ion-icon name="chevron-forward-outline" (click)="displayBakeryItems()"></ion-icon>
+                  Bakery
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showBakery">
+          <ion-col>
+            <ion-grid>
+              <ion-row>
+                <ion-col>Select</ion-col>
+                <ion-col>Items</ion-col>
+                <ion-col>Price</ion-col>
+                <ion-col></ion-col>
+              </ion-row>
+              <div formArrayName="bakeryThings">
+                <ion-row *ngFor="let bakery of bakeryThings.controls; let i = index" [formGroupName]="i">
+                  <ion-col>
+                    <ion-item>
+                      <ion-checkbox formControlName="bakerySelected"></ion-checkbox>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size-sm="4">
+                    <ion-item>
+                      <ion-input type="text" formControlName="bakeryName" disabled="disabled"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input type="text" formControlName="bakeryPrice"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size-sm="2">
+                    <ion-item>
+                      <ion-label>Per Item</ion-label>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label color="primary">
+                  <ion-icon name="chevron-forward-outline" (click)="displayDairyItems()"></ion-icon>
+                  Dairy
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showDairy">
+            <ion-col>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>Select</ion-col>
+                  <ion-col>Items</ion-col>
+                  <ion-col>Price</ion-col>
+                  <ion-col></ion-col>
+                </ion-row>
+                <div formArrayName="dairyThings">
+                  <ion-row *ngFor="let dairy of dairyThings.controls; let i = index" [formGroupName]="i">
+                    <ion-col>
+                      <ion-item>
+                        <ion-checkbox formControlName="dairySelected"></ion-checkbox>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size-sm="4">
+                      <ion-item>
+                        <ion-input type="text" formControlName="dairyName" disabled="disabled"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-input type="text" formControlName="dairyPrice"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label>
+                          Per Item
+                        </ion-label>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button color="primary" type="submit" [disabled]="!shopDetailsForm.valid">Register</ion-button>
+            </ion-col>
+          </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

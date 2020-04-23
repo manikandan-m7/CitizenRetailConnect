@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-card>
+          <br>
+          <ion-card-title class="ion-text-center">{{ shopInfo.name }}</ion-card-title>
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Contact Number</ion-label>
+              <ion-label>{{ shopInfo.contactNo }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Opening Time</ion-label>
+              <ion-label>{{ shopInfo.openingTime }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Closing Time</ion-label>
+              <ion-label>{{ shopInfo.closingTime }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Delivery Options</ion-label>
+              <ion-grid>
+                <ion-row *ngFor="let deliveryMode of shopInfo.deliveryMode">
+                  <ion-label> {{ deliveryMode }} </ion-label>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+            <ion-item>
+              <ion-label>Payment Options</ion-label>
+              <ion-label>
+                {{ shopInfo.paymentOptions }} </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>UPI ID</ion-label>
+              <ion-label>{{ shopInfo.upiId }}</ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

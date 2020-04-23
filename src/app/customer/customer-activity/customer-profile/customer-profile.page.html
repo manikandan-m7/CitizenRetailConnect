@@ -1,0 +1,29 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-card>
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Name</ion-label>
+              <ion-label>{{ customer.name }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Email ID</ion-label>
+              <ion-label>{{ customer.emailId }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Select your location</ion-label>
+              <ion-input type="text" id="input-amount"></ion-input>
+            </ion-item>
+            <div margin-vertical text-right>
+              <ion-button id="btn-confirm" color="secondary">
+                Update Profile
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

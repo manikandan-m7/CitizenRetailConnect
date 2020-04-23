@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+        <ion-label>
+            Deny Order Details
+        </ion-label>
+        <ion-label class="ion-float-right">
+            <ion-icon name="home-outline"></ion-icon>
+        </ion-label>
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="shade">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="content-bold">
+        {{ customerOrder.customerName }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-end">
+          Store Pickup {{ customerOrder.storePickup }}<i class="fa fa-asterisk"></i>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Denial Reason
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-textarea class="column-border" color="medium" rows="2" #denialReason required></ion-textarea>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="light" (click)="denyOrder(denialReason)">Deny Order</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
